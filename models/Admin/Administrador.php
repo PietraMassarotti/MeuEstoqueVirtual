@@ -4,16 +4,20 @@ class Usuario {
     private $id;          
     private $nome;         
     private $email;       
-    private $senha_hash;  
+    private $senha;  
     private $created_at;  
+    private $update_at;  
 
     public function __construct($data) {
         $this->id = $data['id'];
         $this->nome = $data['nome'];
         $this->email = $data['email'];
-        $this->senha_hash = $data['senha_hash'];
+        $this->senha_hash = $data['senha'];
         $this->created_at = $data['created_at'];
+        $this->update_at = $data['update_at'];
     }
+
+    //Get
 
     public function getId() { 
         return $this->id; 
@@ -27,13 +31,19 @@ class Usuario {
         return $this->email; 
     }
 
-    public function getSenhaHash() { 
-        return $this->senha_hash; 
+    public function getSenha() { 
+        return $this->senha; 
     }
 
     public function getCreatedAt() { 
         return $this->created_at; 
     }
+
+    public function getUpdateAt() { 
+        return $this->update_at; 
+    }
+
+    //Set
 
     public function setNome($nome) { 
         $this->nome = $nome; 
@@ -43,9 +53,11 @@ class Usuario {
         $this->email = $email; 
     }
 
-    public function setSenhaHash($senha_hash) { 
-        $this->senha_hash = $senha_hash; 
+    public function setSenha($senha) { 
+        $this->senha = $senha; 
     }
+
+    
 }
 ?>
 
