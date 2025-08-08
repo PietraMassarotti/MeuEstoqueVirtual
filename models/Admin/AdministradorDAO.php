@@ -1,8 +1,8 @@
 <?php
-require_once 'Usuario.php';
+require_once 'Administrador.php';
 require_once __DIR__ . '/../../../config/Database.php';
 
-class UsuarioDAO {
+class AdminDAO {
     private $conn;
 
     public function __construct() {
