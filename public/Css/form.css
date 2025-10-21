@@ -1,0 +1,70 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #e6f0ff;
+    color: #003366;
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    padding: 20px;
+    background-color: #004080;
+    color: white;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+/* Estilo do formulário */
+form {
+    max-width: 500px;
+    margin: 0 auto 30px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Campos e labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #004080;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #cce0ff;
+    border-radius: 4px;
+    background-color: #f5faff;
+    font-size: 16px;
+}
+
+/* Botões */
+button {
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}

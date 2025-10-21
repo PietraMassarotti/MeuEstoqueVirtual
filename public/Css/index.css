@@ -1,0 +1,185 @@
+/* Reset total de margens e preenchimentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Remove qualquer margem do body e html */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    color: #003366;
+}
+
+h1, h2 {
+    color: #004080;
+    padding: 10px;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #004080;
+    padding-bottom: 10px;
+}
+
+/* Título */
+header h1 {
+    color: white;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navegação */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #0073e6;
+}
+
+nav ul li {
+    border-right: 1px solid #005bb5;
+}
+
+nav ul li:last-child {
+    border-right: none;
+}
+
+nav ul li a {
+    display: block;
+    padding: 14px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #005bb5;
+}
+
+
+a {
+    color: #0059b3;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+thead {
+    background-color: #0059b3;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #cce0ff;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f7ff;
+}
+
+/* Botões */
+.btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px;
+}
+
+.btn-edit {
+    background-color: #0073e6;
+}
+
+.btn-delete {
+    background-color: #cc0000;
+}
+
+.btn-exit {
+    background-color: #004080;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Ações */
+.actions {
+    margin-top: 30px;
+}
+
+.btn-actions {
+    white-space: nowrap;
+}
+
+/* Estilo do formulário */
+form {
+    max-width: 500px;
+    margin: 0 auto 30px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Campos e labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #004080;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #cce0ff;
+    border-radius: 4px;
+    background-color: #f5faff;
+    font-size: 16px;
+}
+
+/* Botões */
+button {
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}

@@ -1,0 +1,181 @@
+<?php
+
+declare(strict_types=1);
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/controllers/BaseController.php';
+require_once __DIR__ . '/../app/controllers/CategoriaController.php';
+require_once __DIR__ . '/../app/controllers/ClienteController.php';
+require_once __DIR__ . '/../app/controllers/LoginController.php';
+require_once __DIR__ . '/../app/controllers/MarcaController.php';
+require_once __DIR__ . '/../app/controllers/ProdutoController.php';
+
+$fullUri = $_SERVER['REQUEST_URI'];
+
+$basePath = '/MeuEstoqueVirtual/public';
+
+$uri = $fullUri;
+if (strpos($uri, $basePath) === 0) {
+    $uri = substr($uri, strlen($basePath));
+}
+
+if ($uri === '' || $uri === '/') {
+    $uri = '/';
+}
+
+if (strpos($uri, '?') !== false) {
+    $uri = substr($uri, 0, strpos($uri, '?'));
+}
+
+switch ($uri) {
+    //--------------------------------
+    //°*Página principal (De login)*°
+    //--------------------------------
+    case '/':
+    case '':
+        $controller = new \app\controllers\LoginController();
+        $controller->showLogin();
+        break;
+    //Processo de login     
+    case '/login/entrar':
+        $controller = new \app\controllers\LoginController();
+        $controller->login();
+        break;
+
+    case '/login/sair':
+        $controller = new \app\controllers\LoginController();
+        $controller->logout();
+        break;
+    //-------------------------------------------------------------------------------------------
+
+    //--------------------------
+    //°*Páginas do site e CRUD*°
+    //--------------------------
+
+    //Categoria
+    case '/categoria':
+        $controller = new \app\controllers\CategoriaController();
+        $controller->index();
+        break;
+
+    case '/categoria/criar':
+        $controller = new \app\controllers\CategoriaController();
+        $controller->create();
+        break;
+
+    case '/categoria/adicionar':
+        $controller = new \app\controllers\CategoriaController();
+        $controller->formCreate();
+        break;
+
+    case (preg_match('/\/categoria\/editar\\/(\d+)/', $uri, $matches) ? true : false):
+        $controller = new \app\controllers\CategoriaController();
+        $controller->formEdit((int)$matches[1]);
+        break;
+
+    case '/categoria/salvar':
+        $controller = new \app\controllers\CategoriaController();
+        $controller->edit();
+        break;                                                      
+
+    case (preg_match('/\/categoria\/deletar\/(\d+)/', $uri, $matches) ? true : false):
+        $controller = new \app\controllers\CategoriaController();
+        $controller->delete((int)$matches[1]);
+        break;
+    //-------------------------------------------------------------------------------------------
+
+    //Cliente
+    case '/cliente':
+        $controller = new \app\controllers\ClienteController();
+        $controller->index();
+        break;
+
+    case '/cliente/criar':
+        $controller = new \app\controllers\ClienteController();
+        $controller->create();
+        break;
+
+    case '/cliente/adicionar':
+        $controller = new \app\controllers\ClienteController();
+        $controller->formCreate();
+        break;
+
+    case (preg_match('/\/cliente\/editar\\/(\d+)/', $uri, $matches) ? true : false):
+        $controller = new \app\controllers\ClienteController();
+        $controller->formEdit((int)$matches[1]);
+        break;
+
+    case '/cliente/salvar':
+        $controller = new \app\controllers\ClienteController();
+        $controller->edit();
+        break;
+
+    case (preg_match('/\/cliente\/deletar\/(\d+)/', $uri, $matches) ? true : false):
+        $controller = new \app\controllers\ClienteController();
+        $controller->delete((int)$matches[1]);
+        break;
+    //-------------------------------------------------------------------------------------------
+
+
+    //Marca
+    case '/marca':
+        $controller = new \app\controllers\MarcaController();
+        $controller->index();
+        break;
+
+    case '/marca/criar':
+        $controller = new \app\controllers\MarcaController();
+        $controller->create();
+        break;
+
+    case (preg_match('/\/marca\/editar\\/(\d+)/', $uri, $matches) ? true : false):
+        $controller = new \app\controllers\MarcaController();
+        $controller->edit((int)$matches[1]);
+        break;
+
+    case '/marca/salvar':
+        $controller = new \app\controllers\MarcaController();
+        $controller->save();
+        break;
+
+    case (preg_match('/\/marca\/deletar\/(\d+)/', $uri, $matches) ? true : false):
+        $controller = new \app\controllers\MarcaController();
+        $controller->delete((int)$matches[1]);
+        break;
+    //-------------------------------------------------------------------------------------------
+
+    //Produto
+    case '/produto':
+        $controller = new \app\controllers\ProdutoController();
+        $controller->index();
+        break;
+
+    case '/produto/criar':
+        $controller = new \app\controllers\ProdutoController();
+        $controller->create();
+        break;
+
+    case (preg_match('/\/produto\/editar\\/(\d+)/', $uri, $matches) ? true : false):
+        $controller = new \app\controllers\ProdutoController();
+        $controller->edit((int)$matches[1]);
+        break;
+
+    case '/produto/salvar':
+        $controller = new \app\controllers\ProdutoController();
+        $controller->save();
+        break;
+
+    case (preg_match('/\/produto\/deletar\/(\d+)/', $uri, $matches) ? true : false):
+        $controller = new \app\controllers\ProdutoController();
+        $controller->delete((int)$matches[1]);
+        break;
+    //-------------------------------------------------------------------------------------------
+
+
+    //°*Caso de erro*°
+    default:
+        http_response_code(404);
+        echo "<div class='container mt-4'><h1>404 - Página não encontrada</h1>";
+        echo "<p>A página solicitada não existe.</p>";
+        echo "<a href='{$basePath}/' class='btn btn-primary'>Voltar para Home</a></div>";
+        break;
+}
