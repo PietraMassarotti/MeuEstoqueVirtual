@@ -9,7 +9,7 @@ class Database {
     private $host = 'localhost:3306';    
     private $db_name = 'sistema_estoque'; 
     private $username = 'root';          
-    private $password = 'b4nc0D4d0sM1SQL';  //b4nc0D4d0sM1SQL //&tec77@info!
+    private $password = '&tec77@info!';   //&tec77@info!
     private $conn;                       
 
     public function getConnection() {
@@ -28,3 +28,4 @@ class Database {
         return $this->conn;
     }
 }
+
