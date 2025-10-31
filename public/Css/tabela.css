@@ -1,0 +1,217 @@
+/* Fundo geral */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #FFF2F9 0%, #FE83C6 100%) !important;
+    min-height: 100vh;
+    line-height: 1.6;
+    padding-bottom: 100px;
+}
+
+/* Container principal */
+.main-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(250, 78, 171, 0.2); /* sombra rosa */
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Títulos */
+h1 {
+    color: #323232 !important;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+/* Botão adicionar */
+a[href*="adicionar"] {
+    display: inline-block;
+    background: linear-gradient(135deg, #FE83C6 0%, #FA4EAB 100%);
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(250, 78, 171, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+a[href*="adicionar"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(250, 78, 171, 0.4);
+    background: linear-gradient(135deg, #FA4EAB 0%, #FE83C6 100%);
+}
+
+/* Estilos da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(250, 78, 171, 0.15);
+}
+
+thead {
+    background: linear-gradient(135deg, #FE83C6 0%, #FA4EAB 100%);
+}
+
+th {
+    padding: 1.2rem;
+    text-align: left;
+    font-weight: 600;
+    color: #ffffff !important;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #f1c6db;
+    background: #ffffff;
+}
+
+tbody tr:hover {
+    background: #FFF2F9;
+    transform: scale(1.005);
+}
+
+tbody tr:nth-child(even) {
+    background: #fdf0f7;
+}
+
+td {
+    padding: 1rem 1.2rem;
+    color: #323232 !important;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+td:first-child {
+    font-weight: 700;
+    color: #FA4EAB !important;
+}
+
+/* Botões da tabela */
+.btn-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+/* Editar */
+.btn-edit {
+    background: linear-gradient(135deg, #FE83C6 0%, #FA4EAB 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(250, 78, 171, 0.3);
+}
+
+.btn-edit:hover {
+    background: linear-gradient(135deg, #FA4EAB 0%, #FE83C6 100%);
+    transform: translateY(-2px);
+}
+
+/* Deletar */
+.btn-delete {
+    background: linear-gradient(135deg, #FF6B6B 0%, #E53E3E 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #E53E3E 0%, #C53030 100%);
+    transform: translateY(-2px);
+}
+
+/* Botão voltar */
+.actions {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 500;
+    text-align: center;
+}
+
+.btn-exit {
+    background: linear-gradient(135deg, #323232 0%, #555555 100%);
+    color: white;
+    box-shadow: 0 6px 25px rgba(50, 50, 50, 0.4);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-exit:hover {
+    background: linear-gradient(135deg, #555555 0%, #323232 100%);
+    transform: translateY(-3px);
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #FFF2F9;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #FE83C6 0%, #FA4EAB 100%);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #FA4EAB 0%, #FE83C6 100%);
+}
+/* Logo fixa no canto inferior esquerdo */
+.logo-fixed {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    width: 80px;
+    height: auto;
+    z-index: 900;
+    transition: all 0.3s ease;
+    opacity: 0.95;
+}
+
+.logo-fixed:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
