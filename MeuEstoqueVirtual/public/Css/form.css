@@ -1,0 +1,259 @@
+/* Importação da fonte */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset e configurações gerais */
+.all {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Container principal do formulário */
+.form-container {
+    background: #ffffff !important;
+    /* Mantém branco para contraste */
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #FE83C6;
+    /* Rosa médio como detalhe */
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(135deg, #FA4EAB 0%, #FE83C6 100%);
+}
+
+/* Logo no topo do formulário */
+.form-logo {
+    display: block;
+    max-width: 150px;
+    /* Tamanho máximo da logo */
+    height: auto;
+    margin: 0 auto 1.5rem auto;
+    /* Centralizada com espaço embaixo */
+}
+
+/* Logo alternativa - formato circular */
+.form-logo-circle {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.5rem auto;
+    border: 3px solid #FA4EAB;
+    /* Borda rosa da paleta */
+    box-shadow: 0 8px 20px rgba(250, 78, 171, 0.2);
+}
+
+/* Logo grande - para destaque maior */
+.form-logo-large {
+    display: block;
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto 2rem auto;
+}
+
+/* Estilos para selects */
+.form-select {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid #FE83C6 !important;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    background: #ffffff !important;
+    color: #323232 !important;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23FA4EAB' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.2rem center;
+    background-size: 12px;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: #FA4EAB !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(250, 78, 171, 0.2) !important;
+    transform: translateY(-1px);
+}
+
+.form-select:hover {
+    border-color: #FA4EAB !important;
+}
+
+/* Títulos */
+h1 {
+    color: #323232 !important;
+    /* Preto grafite */
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: none;
+}
+
+h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Estilos do formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Labels */
+label {
+    color: #323232 !important;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid #FE83C6 !important;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    background: #ffffff !important;
+    color: #323232 !important;
+}
+
+input:focus {
+    outline: none;
+    border-color: #FA4EAB !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(250, 78, 171, 0.2) !important;
+    transform: translateY(-1px);
+}
+
+input:hover {
+    border-color: #FA4EAB !important;
+}
+
+/* Placeholder */
+input::placeholder {
+    color: #a0aec0;
+    font-weight: 400;
+}
+
+/* Botões */
+button {
+    background: linear-gradient(135deg, #FA4EAB 0%, #FE83C6 100%);
+    color: #ffffff;
+    border: none;
+    padding: 1.2rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #FE83C6 0%, #FA4EAB 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(250, 78, 171, 0.3);
+}
+
+button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(250, 78, 171, 0.3);
+}
+
+/* Links */
+a {
+    color: #FA4EAB;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #FE83C6;
+    text-decoration: underline;
+}
+
+/* Mensagens */
+.message.error {
+    padding-top: 3rem;
+    font-size: 25px;
+    background: #ffffff;
+    color: #fa4e4e;
+    border-left: 4px solid #fa4e4e;
+}
+
+.message.success {
+    padding-top: 3rem;
+    font-size: 25px;
+    background: #ffffff;
+    color: #fa4e4e;
+    border-left: 4px solid #fa4e4e;
+}
+
+/* Grupo de botões */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.form-actions button {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* Responsividade para logo */
+@media (max-width: 480px) {
+    .form-logo {
+        max-width: 120px;
+    }
+
+    .form-logo-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .form-logo-large {
+        max-width: 150px;
+    }
+}

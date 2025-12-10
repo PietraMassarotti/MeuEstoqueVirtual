@@ -1,0 +1,212 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2025-08-06 11:05
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: Nitro 5
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+ALTER SCHEMA `sistema_estoque`  DEFAULT CHARACTER SET utf8  DEFAULT COLLATE utf8_general_ci ;
+
+ALTER TABLE `sistema_estoque`.`Administradores` 
+CHARACTER SET = utf8 , COLLATE = utf8_general_ci ;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`produtos` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(25) NOT NULL,
+  `preco` FLOAT(10) UNSIGNED NOT NULL,
+  `quantidade` SMALLINT(5) UNSIGNED NOT NULL,
+  `genero` ENUM('Masculino', 'Feminino', 'Unissex') NULL DEFAULT NULL,
+  `descricao` VARCHAR(255) NULL DEFAULT NULL,
+  `create_at` DATETIME NOT NULL DEFAULT NOW(),
+  `update_at` DATETIME NOT NULL DEFAULT NOW(),
+  `marcas_id` SMALLINT(5) UNSIGNED NOT NULL,
+  `categorias_id` TINYINT(3) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`, `marcas_id`, `categorias_id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC) VISIBLE,
+  INDEX `fk_produtos_marcas_idx` (`marcas_id` ASC) VISIBLE,
+  INDEX `fk_produtos_categorias1_idx` (`categorias_id` ASC) VISIBLE,
+  CONSTRAINT `fk_produtos_marcas`
+    FOREIGN KEY (`marcas_id`)
+    REFERENCES `sistema_estoque`.`marcas` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_produtos_categorias1`
+    FOREIGN KEY (`categorias_id`)
+    REFERENCES `sistema_estoque`.`categorias` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`marcas` (
+  `id` SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(25) NOT NULL,
+  `create_at` DATETIME NOT NULL DEFAULT NOW(),
+  `update_at` DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`categorias` (
+  `id` TINYINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(20) NOT NULL,
+  `create_at` DATETIME NOT NULL DEFAULT NOW(),
+  `update_at` DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`clientes` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(70) NOT NULL,
+  `endereco` VARCHAR(255) NOT NULL,
+  `telefone` VARCHAR(11) NULL DEFAULT NULL,
+  `nasc` DATE NULL DEFAULT NULL,
+  `create_at` DATETIME NOT NULL DEFAULT NOW(),
+  `update_at` DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`parcelamentos` (
+  `id` TINYINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `quantidade` INT(10) UNSIGNED NOT NULL,
+  `taxa de juros` FLOAT(10) UNSIGNED NOT NULL,
+  `create_at` DATETIME NOT NULL DEFAULT NOW(),
+  `update_at` VARCHAR(45) NOT NULL DEFAULT 'NOW()',
+  `metodos_pagamrnto_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`, `metodos_pagamrnto_id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `nome_UNIQUE` (`quantidade` ASC) VISIBLE,
+  INDEX `fk_parcelamentos_metodos_pagamrnto1_idx` (`metodos_pagamrnto_id` ASC) VISIBLE,
+  CONSTRAINT `fk_parcelamentos_metodos_pagamrnto1`
+    FOREIGN KEY (`metodos_pagamrnto_id`)
+    REFERENCES `sistema_estoque`.`metodos_pagamrnto` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`pedidos` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `create_at` DATETIME NOT NULL DEFAULT NOW(),
+  `update_at` DATETIME NOT NULL DEFAULT NOW(),
+  `clientes_id` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`, `clientes_id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_pedidos_clientes1_idx` (`clientes_id` ASC) VISIBLE,
+  CONSTRAINT `fk_pedidos_clientes1`
+    FOREIGN KEY (`clientes_id`)
+    REFERENCES `sistema_estoque`.`clientes` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`compras` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `create_at` DATETIME NOT NULL DEFAULT NOW(),
+  `update_at` DATETIME NOT NULL DEFAULT NOW(),
+  `pedidos_id` INT(10) UNSIGNED NOT NULL,
+  `parcelamentos_id` TINYINT(3) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`, `pedidos_id`, `parcelamentos_id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_compras_pedidos1_idx` (`pedidos_id` ASC) VISIBLE,
+  INDEX `fk_compras_parcelamentos1_idx` (`parcelamentos_id` ASC) VISIBLE,
+  CONSTRAINT `fk_compras_pedidos1`
+    FOREIGN KEY (`pedidos_id`)
+    REFERENCES `sistema_estoque`.`pedidos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_compras_parcelamentos1`
+    FOREIGN KEY (`parcelamentos_id`)
+    REFERENCES `sistema_estoque`.`parcelamentos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`pedidos_has_produtos` (
+  `quantidade` INT(10) UNSIGNED NOT NULL,
+  `produtos_id` INT(10) UNSIGNED NOT NULL,
+  `pedidos_id` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`produtos_id`, `pedidos_id`),
+  INDEX `fk_pedidos_has_produtos_pedidos1_idx` (`pedidos_id` ASC) VISIBLE,
+  CONSTRAINT `fk_pedidos_has_produtos_produtos1`
+    FOREIGN KEY (`produtos_id`)
+    REFERENCES `sistema_estoque`.`produtos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pedidos_has_produtos_pedidos1`
+    FOREIGN KEY (`pedidos_id`)
+    REFERENCES `sistema_estoque`.`pedidos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`metodos_pagamrnto` (
+  `id` INT(11) NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
+  `create_at` DATETIME NOT NULL DEFAULT NOW(),
+  `update_at` DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`parcelas` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `numero` SMALLINT(5) UNSIGNED NOT NULL,
+  `valor` FLOAT(11) NOT NULL,
+  `data` DATE NOT NULL,
+  `status` ENUM('Pago', 'Pendente', 'Não Pago', 'Cancelado') NOT NULL,
+  `create_at` DATETIME NOT NULL DEFAULT NOW(),
+  `update_at` DATETIME NOT NULL DEFAULT NOW(),
+  `compras_id` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`, `compras_id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `numero_UNIQUE` (`numero` ASC) VISIBLE,
+  INDEX `fk_parcelas_compras1_idx` (`compras_id` ASC) VISIBLE,
+  CONSTRAINT `fk_parcelas_compras1`
+    FOREIGN KEY (`compras_id`)
+    REFERENCES `sistema_estoque`.`compras` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `sistema_estoque`.`registros` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `quantidade` SMALLINT(5) UNSIGNED NOT NULL,
+  `acao` ENUM('Entrada', 'Saida') NOT NULL,
+  `descricao` VARCHAR(255) NULL DEFAULT NULL,
+  `create_at` DATETIME NOT NULL DEFAULT NOW(),
+  `update_at` DATETIME NOT NULL DEFAULT NOW(),
+  `produtos_id` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`, `produtos_id`),
+  UNIQUE INDEX `quantidade_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_registros_produtos1_idx` (`produtos_id` ASC) VISIBLE,
+  CONSTRAINT `fk_registros_produtos1`
+    FOREIGN KEY (`produtos_id`)
+    REFERENCES `sistema_estoque`.`produtos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
