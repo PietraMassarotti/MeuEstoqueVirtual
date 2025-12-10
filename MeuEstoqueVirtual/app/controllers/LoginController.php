@@ -27,10 +27,9 @@ class LoginController extends BaseController
      */
     public function login(): void
     {
-        // Sanitiza as entradas
         $email = Sanitizacao::sanitizar($_POST['email']);
         $senha = Sanitizacao::sanitizar($_POST['senha']);
-        // Valida o login
+
         $adminDAO = new \App\Models\Admin\AdminDAO();
         $admin = $adminDAO->validarLogin($email, $senha);
 
@@ -42,7 +41,9 @@ class LoginController extends BaseController
             ];
             $this->redirect('/produto');
         } else {
-            echo "Email ou senha incorretos :(";
+            $this->render('Login/index', [
+                'erro' => 'E-mail ou senha incorretos!'
+            ]);
         }
     }
 

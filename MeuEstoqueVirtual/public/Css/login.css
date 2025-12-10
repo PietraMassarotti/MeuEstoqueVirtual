@@ -180,6 +180,7 @@ button:active {
         opacity: 0;
         transform: translateY(40px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -191,30 +192,30 @@ button:active {
     body {
         padding: 1rem;
     }
-    
+
     .login-container {
         padding: 2rem;
         border-radius: 15px;
     }
-    
+
     h1 {
         font-size: 2rem;
     }
-    
+
     h2 {
         font-size: 1.2rem;
     }
-    
+
     input {
         padding: 0.9rem 1rem;
         font-size: 0.95rem;
     }
-    
+
     button {
         padding: 1rem 1.5rem;
         font-size: 1rem;
     }
-    
+
     .login-logo {
         max-width: 150px;
     }
@@ -224,22 +225,32 @@ button:active {
     .login-container {
         padding: 1.5rem;
     }
-    
+
     h1 {
         font-size: 1.8rem;
     }
-    
+
     h2 {
         font-size: 1.1rem;
     }
-    
+
     input {
         padding: 0.8rem;
         font-size: 0.9rem;
     }
-    
+
     button {
         padding: 0.9rem 1.2rem;
         font-size: 0.9rem;
     }
+}
+
+.erro-msg {
+    background: #ffdddd;
+    color: #a10000;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-left: 4px solid red;
+    border-radius: 4px;
+    font-weight: bold;
 }

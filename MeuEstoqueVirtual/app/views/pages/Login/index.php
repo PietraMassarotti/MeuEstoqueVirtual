@@ -20,6 +20,11 @@ $basePath = '/MeuEstoqueVirtual/public';
         <img src="<?= $basePath . '/assets/logo-claudineia.jpeg' ?>" alt="Claudinéia Fashion" class="login-logo">
         <h1>Meu Estoque Virtual</h1>
         <h2>Login</h2>
+
+        <?php if (!empty($erro)): ?>
+            <div class="erro-msg"><?= $erro ?></div>
+        <?php endif; ?>
+
         <form action="<?= $basePath . '/login/entrar' ?>" method="POST">
             <div>
                 <label>E-mail:</label>
